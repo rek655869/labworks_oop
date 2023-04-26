@@ -1,6 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
 #include <cassert> // assert
-#include <cmath>// sqrt � fabs
+#include <cmath>// sqrt и fabs
 using namespace std;
 struct Expression
 {
