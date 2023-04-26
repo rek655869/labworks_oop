@@ -1,24 +1,19 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 using namespace std;
  
 
 class IncorrectNumber
 {
-private:
-	string msg;
 public:
-	IncorrectNumber(string msg): msg{msg}{}
-
-	string get_message() { return msg; }
+	char sym;
+	IncorrectNumber(char sym): sym{ sym }{}
 };
 
 int to_int(char c)
 {
-	if ((int(c) >= 32 && int(c) <= 47) || (int(c) >= 58 && int(c) <= 64) || (int(c) >= 91 && int(c) <= 96) || (int(c) >= 123 && int(c) <= 127))
-		throw IncorrectNumber("Ââîä ñïåöèàëüíûõ ñèìâîëîâ çàïðåù¸í");
-	else if ((int(c) >= 65 && int(c) <= 90) || (int(c) >= 97 && int(c) <= 122))
-		throw IncorrectNumber("Ââîä áóêâ çàïðåù¸í");
+	if ((int(c) < 48 || int(c) > 57))
+		throw IncorrectNumber(c);
 	else
 		return stoi(&c);
 }
@@ -27,15 +22,15 @@ int main() {
 	setlocale(LC_ALL, "RUS");
 	char sym;
 	int res;
-	cout << "Ââåäèòå ñèìâîë (òîëüêî öåëîå ÷èñëî):\n>";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ¸Ð¼Ð²Ð¾Ð» (Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾):\n>";
 	cin >> sym;
 	try {
 		res = to_int(sym);
 	}
 	catch (IncorrectNumber e) {
-		cout << e.get_message() << endl;
+		cout << "Ð¡Ð¸Ð¼Ð²Ð¾Ð» " << e.sym  << " ÑÑ‚Ð¾ Ð½Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾" << endl;
 		return 0;
 	}
-	cout << "Âû ââåëè ÷èñëî " << res;
+	cout << "Ð’Ñ‹ Ð²Ð²ÐµÐ»Ð¸ Ñ‡Ð¸ÑÐ»Ð¾ " << res;
 	return 0;
 }
